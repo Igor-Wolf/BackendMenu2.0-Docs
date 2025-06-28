@@ -1,0 +1,311 @@
+openapi: 3.0.0
+info:
+  title: CrimePerfeitoAPI
+  description: API Exemplo
+  version: 1.0.0
+
+servers:
+  - url: https://backend-menu2-0.vercel.app/api
+
+paths:
+  /food:
+    get:
+      summary: Lista de Pratos Disponíveis
+      tags:
+        - Pratos
+      responses:
+        "200":
+          description: Lista retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    category:
+                      type: string
+                    description:
+                      type: string
+                    available:
+                      type: boolean
+                    price:
+                      type: object
+                      properties:
+                        small:
+                          type: [number, null]
+                        average:
+                          type: [number, null]
+                        large:
+                          type: [number, null]
+                        unique:
+                          type: [number, null]
+                    url:
+                      type: string
+                    _idreal:
+                      type: number
+    post:
+      summary: Cria um novo prato
+      tags:
+        - Pratos
+      description: Adiciona um novo item ao cardápio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                category:
+                  type: string
+                description:
+                  type: string
+                available:
+                  type: boolean
+                price:
+                  type: object
+                  properties:
+                    small:
+                      type: [number, null]
+                    average:
+                      type: [number, null]
+                    large:
+                      type: [number, null]
+                    unique:
+                      type: [number, null]
+                url:
+                  type: string
+
+      responses:
+        "200":
+          description: Retorna uma mensagem de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+  /food/{id}:
+    get:
+      summary: Um prato específico
+      tags:
+        - Pratos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Um ID do Prato
+          schema:
+            type: number
+      responses:
+        "200":
+          description: Retorna um prato especifíco pelo ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  name:
+                    type: string
+                  category:
+                    type: string
+                  description:
+                    type: string
+                  available:
+                    type: boolean
+                  price:
+                    type: object
+                    properties:
+                      small:
+                        type: [number, null]
+                      average:
+                        type: [number, null]
+                      large:
+                        type: [number, null]
+                      unique:
+                        type: [number, null]
+                  url:
+                    type: string
+                  _idreal:
+                    type: number
+    delete:
+      summary: Deleta um  prato
+      tags:
+        - Pratos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Um ID do Prato
+          schema:
+            type: number
+      description: Deleta um  item ao cardápio
+
+      responses:
+        "200":
+          description: Retorna uma mensagem de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+    patch:
+      summary: Altera informações do prato
+      tags:
+        - Pratos
+      description: Altera informações do prato escolhido
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Um ID do Prato
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                category:
+                  type: string
+                description:
+                  type: string
+                available:
+                  type: boolean
+                price:
+                  type: object
+                  properties:
+                    small:
+                      type: [number, null]
+                    average:
+                      type: [number, null]
+                    large:
+                      type: [number, null]
+                    unique:
+                      type: [number, null]
+                url:
+                  type: string
+                _idreal:
+                  type: number
+
+      responses:
+        "200":
+          description: Retorna uma mensagem de sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /food/category/{category}:
+    get:
+      summary: Uma lista de Pratos de uma categoria
+      tags:
+        - Pratos
+      parameters:
+        - name: category
+          in: path
+          required: true
+          description: Uma string contendo o nome da categoria do prato
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    category:
+                      type: string
+                    description:
+                      type: string
+                    available:
+                      type: boolean
+                    price:
+                      type: object
+                      properties:
+                        small:
+                          type: [number, null]
+                        average:
+                          type: [number, null]
+                        large:
+                          type: [number, null]
+                        unique:
+                          type: [number, null]
+                    url:
+                      type: string
+                    _idreal:
+                      type: number
+  /food/name/{name}:
+    get:
+      summary: Uma lista de pratos que contenham o Nome
+      tags:
+        - Pratos
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: Uma string contendo o nome do prato
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Lista retornada com sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    name:
+                      type: string
+                    category:
+                      type: string
+                    description:
+                      type: string
+                    available:
+                      type: boolean
+                    price:
+                      type: object
+                      properties:
+                        small:
+                          type: [number, null]
+                        average:
+                          type: [number, null]
+                        large:
+                          type: [number, null]
+                        unique:
+                          type: [number, null]
+                    url:
+                      type: string
+                    _idreal:
+                      type: number
