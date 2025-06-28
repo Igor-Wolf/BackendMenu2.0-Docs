@@ -4,4 +4,4 @@ Caso alterar alguma coisa no .yaml rodar
 
 - npx @redocly/cli build-docs openapi.yaml
 
-para rebuldar
+para rebuildar e em seguida renomeie para index.html
